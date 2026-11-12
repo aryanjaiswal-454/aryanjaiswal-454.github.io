@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Command, Menu, Moon, Sun, X } from "lucide-react";
+import { Command, Menu, X } from "lucide-react";
 import type { CSSProperties } from "react";
 import site from "../../config/site.js";
 
@@ -12,6 +12,8 @@ const links = [
   { label: "Certifications", id: "certifications" },
   { label: "Resume", id: "resume" }
 ];
+
+const sectionIds = [...links.map(({ id }) => id), "contact"];
 
 interface NavbarProps {
   motionEnabled: boolean;
@@ -26,8 +28,8 @@ export function Navbar({ motionEnabled, onToggleMotion, onOpenPalette }: NavbarP
   const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const sections = links
-      .map(({ id }) => document.getElementById(id))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null);
     let frame = 0;
     const updateActiveSection = () => {
@@ -39,6 +41,10 @@ export function Navbar({ motionEnabled, onToggleMotion, onOpenPalette }: NavbarP
         else break;
       }
       setActive(current);
+      const nextUrl = `${window.location.pathname}${window.location.search}#${current}`;
+      if (`${window.location.pathname}${window.location.search}${window.location.hash}` !== nextUrl) {
+        window.history.replaceState(null, "", nextUrl);
+      }
     };
     const scheduleUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(updateActiveSection);
@@ -140,8 +146,8 @@ export function Navbar({ motionEnabled, onToggleMotion, onOpenPalette }: NavbarP
           aria-label={site.ariaLabels.motionToggle}
           title={motionEnabled ? "Turn motion off" : "Turn motion on"}
         >
-          {motionEnabled ? <Sun size={15} /> : <Moon size={15} />}
-          <span>Motion {motionEnabled ? "on" : "off"}</span>
+          <span className="motion-toggle__track" aria-hidden="true"><span /></span>
+          <span className="motion-toggle__label">Motion {motionEnabled ? "on" : "off"}</span>
         </button>
         <a className="button button--small button--outline header-contact" href="/#contact">
           Contact <span aria-hidden="true">↗</span>
