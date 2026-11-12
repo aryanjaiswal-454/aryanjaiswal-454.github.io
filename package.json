@@ -1,0 +1,39 @@
+{
+  "name": "aryan-jaiswal-portfolio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n client,server -c cyan,magenta \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "npm --workspace client run dev",
+    "dev:server": "npm --workspace server run dev",
+    "generate:site": "node scripts/generate-site-config.mjs",
+    "build": "npm run generate:site && npm --workspace client run build",
+    "typecheck": "npm --workspace client run typecheck",
+    "lint": "eslint .",
+    "test": "npm --workspace server test",
+    "seed": "npm --workspace server run seed",
+    "check:services": "npm --workspace server run check:services",
+    "check": "npm run generate:site && npm run typecheck && npm run lint && npm test && npm --workspace client run build"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.4.0",
+    "typescript-eslint": "^8.44.0"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.1"
+    }
+  }
+}

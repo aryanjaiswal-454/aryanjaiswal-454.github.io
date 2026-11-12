@@ -1,0 +1,77 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Local environment files and secrets (keep only example templates)
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Private keys and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+credentials.json
+service-account*.json
+secrets.json
+
+# Local reference material, exports, and archives; public site assets stay tracked
+/USER_DATA_FOR_REFERANCE/
+/USER_DATA_FOR_REFERENCE/
+
+# Build output, caches, and test artifacts
+/dist/
+**/dist/
+build/
+coverage/
+.vite/
+**/.vite/
+.cache/
+**/.cache/
+.turbo/
+.next/
+.vercel/
+.netlify/
+*.tsbuildinfo
+.eslintcache
+
+# Local databases and database backups
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.bson
+*.archive
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.tmp
+*.temp
+*.bak
+*.orig
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local editor and IDE state
+.vscode/
+.idea/
+.fleet/
+*.suo
+*.user
+node_modules
