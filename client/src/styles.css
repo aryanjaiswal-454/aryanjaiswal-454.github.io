@@ -352,7 +352,7 @@ img { display: block; max-width: 100%; }
 .resume-viewer__actions a { width: 100%; min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 14px; border: 1px solid rgba(255,255,255,0.2); color: #e9e3e0; background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); font-size: 0.76rem; font-weight: 750; transition: border-color 180ms ease, color 180ms ease, background 180ms ease; }
 .resume-viewer__actions a:hover { border-color: rgba(255,59,78,0.58); color: white; background: rgba(227,43,60,0.18); }
 .resume-viewer__actions svg { color: var(--bright); }
-.resume-viewer__page { position: relative; width: min(100%, 63.3vh, 695px); aspect-ratio: 612 / 792; box-shadow: 0 18px 55px rgba(0,0,0,0.3); }
+.resume-viewer__page { position: relative; width: min(100%, 63.3vh, 695px); aspect-ratio: 612 / 792; box-shadow: 0 18px 55px rgba(0,0,0,0.3); transform: scale(1.06); }
 .resume-viewer__image { display: block; width: 100%; height: 100%; object-fit: contain; background: transparent; }
 .resume-viewer__link { position: absolute; z-index: 1; display: block; border-radius: 1px; }
 .resume-viewer__link:hover, .resume-viewer__link:focus-visible { outline: 2px solid rgba(227,43,60,0.7); background: rgba(227,43,60,0.08); }
