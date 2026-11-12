@@ -16,7 +16,7 @@ export const projects = [
       "Streamlit"
     ],
     "githubUrl": "https://github.com/aryanjaiswal-454/Quorum-AI-Research-System",
-    "liveUrl": "https://multi-agent-ai-research-system-groq.streamlit.app/",
+    "liveUrl": "https://quorum-ai-research-system.streamlit.app/",
     "demoUrl": "https://www.linkedin.com/posts/aryan5178_research-gets-more-useful-when-you-can-follow-ugcPost-7525999807363166208-P3Y2/",
     "image": "/assets/projects/quorum.png",
     "featured": true,
