@@ -10,7 +10,7 @@ export const site = {
     "location": "Gorakhpur, Uttar Pradesh",
     "availability": "Open to collaboration and software engineering opportunities",
     "headline": "AI systems, built with a software engineer's mindset.",
-    "intro": "I’m Aryan Jaiswal, a Computer Science and Engineering student at MMMUT, Gorakhpur. I build across AI/ML, agentic AI, and full-stack software—from research workflows to deployable applications.",
+    "intro": "I’m Aryan, a Computer Science and Engineering student at MMMUT, Gorakhpur. I build across AI/ML, agentic AI, and full-stack software—from research workflows to deployable applications.",
     "about": "I’m a CSE student at MMMUT, Gorakhpur, building practical software across AI/ML, agentic systems, and full-stack development. I like taking ideas from technical foundations to usable applications.",
     "portrait": "/assets/portrait.jpg",
     "resume": "/assets/resume.pdf",
@@ -20,7 +20,7 @@ export const site = {
   "contact": {
     "email": "aryanjaiswal0045@gmail.com",
     "phone": "+91 7068618234",
-    "whatsapp": "+91 7068618234",
+    "whatsapp": "",
     "instagram": "https://instagram.com/_aryan__45",
     "youtube": "",
     "linkedin": "https://www.linkedin.com/in/aryan5178/",

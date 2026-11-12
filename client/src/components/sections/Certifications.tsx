@@ -8,7 +8,6 @@ interface Certificate {
   title: string;
   issuer: string;
   category: "learning" | "competition";
-  duration?: string;
   detail?: string;
   topics?: string[];
   image?: string;
@@ -52,7 +51,6 @@ function CertificateBrowser({ certificates, title }: { certificates: Certificate
                 <span className="certificate-list__copy">
                   <strong>{certificate.title}</strong>
                   <span>{certificate.issuer}</span>
-                  {certificate.duration && <small>{certificate.duration}</small>}
                 </span>
               </button>
             );

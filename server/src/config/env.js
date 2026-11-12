@@ -8,10 +8,7 @@ export function validateEnvironment() {
     "MONGODB_URI",
     "JWT_SECRET",
     "ADMIN_EMAIL",
-    "ADMIN_PASSWORD",
-    "SMTP_HOST",
-    "SMTP_USER",
-    "SMTP_PASSWORD"
+    "ADMIN_PASSWORD"
   ];
   const missing = required.filter((key) => !process.env[key]);
   if (missing.length) {
@@ -23,10 +20,6 @@ export function validateEnvironment() {
   const port = Number(process.env.PORT || 5000);
   if (!Number.isInteger(port) || port < 1 || port > 65535) {
     throw new Error("PORT must be an integer from 1 to 65535.");
-  }
-  const smtpPort = Number(process.env.SMTP_PORT || 587);
-  if (!Number.isInteger(smtpPort) || smtpPort < 1 || smtpPort > 65535) {
-    throw new Error("SMTP_PORT must be an integer from 1 to 65535.");
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(process.env.ADMIN_EMAIL)) {
     throw new Error("ADMIN_EMAIL must be a valid email address.");

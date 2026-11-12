@@ -6,7 +6,6 @@ A dark, red-accented portfolio for AI/ML engineering work. The client is a React
 
 - Node.js 20.19+ or 22.12+ and npm (required by Vite 8)
 - MongoDB connection string (Atlas or local)
-- SMTP account for contact-form email delivery
 
 ## Local setup
 
@@ -51,14 +50,12 @@ A dark, red-accented portfolio for AI/ML engineering work. The client is a React
 | `JWT_SECRET` | At least 32 characters; signs the administrator session |
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Initial administrator credentials, used by `npm run seed` |
 | `CLIENT_URL` | Allowed client origin(s), comma-separated |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD` | Contact email transport |
-| `CONTACT_TO` | Destination for contact messages; defaults to `ADMIN_EMAIL` |
 | `GITHUB_USERNAME` | Public GitHub account used by the cached repository endpoint |
 | `GITHUB_TOKEN` | Optional server-only token to increase GitHub API limits |
 
 `client/.env.example` documents the optional `VITE_API_URL`. Do not put credentials in any `VITE_*` variable; Vite exposes those values to browsers. In local development, leave it set to `/api`.
 
-The contact API stores valid submissions before attempting SMTP delivery. The UI reports success only after the server confirms the email send; if SMTP delivery fails, the response clearly states that delivery was not confirmed.
+The portfolio provides direct WhatsApp and email links. It does not collect or send contact messages through the server.
 
 ## Content updates
 
@@ -92,7 +89,6 @@ Deploy the repository root as a Node service. Install with `npm install`; use `n
 - `NODE_ENV=production`, `PORT` (if required by the provider), `MONGODB_URI`
 - a long random `JWT_SECRET`, `JWT_EXPIRES_IN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`
 - `CLIENT_URL` to the deployed client origin
-- SMTP and contact destination settings
 - `GITHUB_USERNAME` and, optionally, `GITHUB_TOKEN`
 
 Run `npm run seed` from the repository root once the API environment and MongoDB are available. Do not copy `.env` files into deployment artifacts.
@@ -110,9 +106,8 @@ Vite's development proxy is not used in production. Admin authentication uses an
 
 - `GET /api/projects`, `/api/skills`, `/api/experience`, `/api/posts`
 - `GET /api/github/repos` (server-side cache)
-- `POST /api/contact` (validated, rate-limited, stored and emailed)
 - `POST /api/auth/login`, `GET /api/auth/me`, `POST /api/auth/logout`
 - `GET`, `POST`, `PUT`, `DELETE /api/admin/:resource` (authenticated)
 - `GET /api/health`
 
-The admin resources are `projects`, `skills`, `experience`, and `posts`. Credentials, password hashes, JWTs, and SMTP settings are never sent to client modules.
+The admin resources are `projects`, `skills`, `experience`, and `posts`. Credentials and password hashes are never sent to client modules.

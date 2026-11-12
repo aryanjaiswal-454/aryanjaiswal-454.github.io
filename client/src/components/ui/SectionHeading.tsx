@@ -1,6 +1,6 @@
 interface SectionHeadingProps {
   id: string;
-  number: string;
+  number?: string;
   eyebrow: string;
   title: string;
   description?: string;
@@ -8,7 +8,6 @@ interface SectionHeadingProps {
 
 export function SectionHeading({
   id,
-  number,
   eyebrow,
   title,
   description
@@ -16,7 +15,6 @@ export function SectionHeading({
   return (
     <div className="section-heading">
       <div className="section-heading__meta">
-        <span className="section-heading__number">{number}</span>
         <span className="section-heading__eyebrow">{eyebrow}</span>
       </div>
       <div className="section-heading__content">

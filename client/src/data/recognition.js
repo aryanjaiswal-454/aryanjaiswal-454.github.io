@@ -41,7 +41,6 @@ export const recognition = {
       "title": "Complete Data Science, Machine Learning, Deep Learning, NLP Bootcamp",
       "issuer": "Udemy — Krish Naik / KRISHAI Technologies Private Limited",
       "category": "learning",
-      "duration": "101.5 hours",
       "credentialUrl": "https://ude.my/UC-f68c0ed8-eca7-41e5-8dff-625740a26563",
       "credentialId": "UC-f68c0ed8-eca7-41e5-8dff-625740a26563",
       "image": "/assets/certificates/Complete_Data_Science_Machine_Learning_DL_NLP_Bootcamp.jpg"
@@ -80,6 +79,13 @@ export const recognition = {
       "image": "/assets/certificates/Getting_Started_with_Cisco_Packet_Tracer_By_Cisco.jpg"
     },
     {
+      "title": "Winner — TechSprint, GDG Hackathon",
+      "issuer": "Google Developer Groups MMMUT",
+      "category": "competition",
+      "credentialId": "MMMUT/CSED/AI/STP/152423/2026",
+      "image": "/assets/certificates/TechSprint_By_GDG.jpg"
+    },
+    {
       "title": "Certificate of Participation — Internal Smart India Hackathon 2026",
       "issuer": "MMMUT RESO",
       "category": "competition",
@@ -87,17 +93,10 @@ export const recognition = {
       "image": "/assets/certificates/InfernoX_SIH_2026.png"
     },
     {
-      "title": "Winner — TechSprint, GDG Hackathon",
-      "issuer": "Google Developer Groups",
-      "category": "competition",
-      "credentialId": "MMMUT/CSED/AI/STP/152423/2026",
-      "image": "/assets/certificates/TechSprint_By_GDG.jpg"
-    },
-    {
       "title": "Top 50 Teams — HackStorm ’25 Finale",
-      "issuer": "HackWithIndia and MMMUT",
+      "issuer": "HackWithIndia MMMUT",
       "category": "competition",
-      "image": "/assets/certificates/HackStorm_By_HackWithIndiaMMMUT.jpg"
+      "image": "/assets/certificates/HackStorm_By_HackWithIndia MMMUT.jpg"
     }
   ],
   "metrics": [

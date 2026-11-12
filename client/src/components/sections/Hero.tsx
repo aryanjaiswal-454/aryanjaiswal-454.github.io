@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import site from "../../config/site.js";
+import { BuildLog } from "./BuildLog";
 
 const roles = ["AI/ML Engineer", "LLM & RAG Builder", "Agentic AI Builder"];
-const agentLines = [
-  "Quorum: source-grounded research",
-  "Network Security: FastAPI + MLOps",
-  "DevTinder: JWT + MongoDB-backed flows"
-];
+
+function SocialIcon({ label }: { label: string }) {
+  if (label === "GitHub") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.304-5.466-1.334-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 6.004 0c2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.216.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12" /></svg>;
+  }
+  if (label === "LinkedIn") {
+    return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>;
+  }
+  return <Mail size={20} aria-hidden="true" />;
+}
 
 interface HeroProps {
   motionEnabled: boolean;
@@ -17,7 +23,6 @@ interface HeroProps {
 export function Hero({ motionEnabled }: HeroProps) {
   const reduceMotion = useReducedMotion();
   const [roleIndex, setRoleIndex] = useState(0);
-  const [logText, setLogText] = useState("");
   const roleMotion = motionEnabled && !reduceMotion;
   const [firstName, ...nameParts] = site.identity.displayName.trim().split(/\s+/);
 
@@ -29,33 +34,10 @@ export function Hero({ motionEnabled }: HeroProps) {
     return () => window.clearInterval(interval);
   }, [roleMotion]);
 
-  useEffect(() => {
-    if (!roleMotion) {
-      setLogText(agentLines[0]);
-      return;
-    }
-
-    let lineIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-    const interval = window.setInterval(() => {
-      const current = agentLines[lineIndex];
-      charIndex += deleting ? -1 : 1;
-      setLogText(current.slice(0, Math.max(0, charIndex)));
-      if (!deleting && charIndex >= current.length) {
-        deleting = true;
-      } else if (deleting && charIndex <= 0) {
-        deleting = false;
-        lineIndex = (lineIndex + 1) % agentLines.length;
-      }
-    }, 54);
-    return () => window.clearInterval(interval);
-  }, [roleMotion]);
-
   const socialLinks = [
-    { href: site.contact.github, label: "GitHub", icon: Github },
-    { href: site.contact.linkedin, label: "LinkedIn", icon: Linkedin },
-    { href: `mailto:${site.contact.email}`, label: "Email", icon: Mail }
+    { href: site.contact.github, label: "GitHub" },
+    { href: site.contact.linkedin, label: "LinkedIn" },
+    { href: `mailto:${site.contact.email}`, label: "Email" }
   ].filter((link) => Boolean(link.href));
 
   return (
@@ -97,29 +79,16 @@ export function Hero({ motionEnabled }: HeroProps) {
             </a>
           </div>
           <div className="hero-socials" aria-label="Social profiles">
-            {socialLinks.map(({ href, label, icon: Icon }) => (
+          {socialLinks.map(({ href, label }) => (
               <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer">
-                <Icon size={17} aria-hidden="true" />
+                <SocialIcon label={label} />
                 <span>{label}</span>
               </a>
             ))}
           </div>
         </div>
 
-        <aside className="agent-panel" aria-label="Live project log">
-          <div className="agent-panel__top">
-            <span className="agent-panel__lights" aria-hidden="true"><i /><i /><i /></span>
-            <span>BUILD LOG / LIVE</span>
-            <span className="agent-panel__live"><span /> ACTIVE</span>
-          </div>
-          <div className="agent-panel__body">
-            <p className="agent-panel__path">~/aryan/portfolio <span>main</span></p>
-            <p><b>01</b><span className="terminal-green">system ready</span></p>
-            <p><b>02</b><span>focus: {site.identity.roleLine2}</span></p>
-            <p><b>03</b><span className="terminal-red">&gt; {logText}<i className="terminal-cursor" /></span></p>
-          </div>
-          <div className="agent-panel__bottom"><span>PYTHON</span><span>LLM SYSTEMS</span><span>SHIP / LEARN / REPEAT</span></div>
-        </aside>
+        <BuildLog />
 
       </div>
     </section>

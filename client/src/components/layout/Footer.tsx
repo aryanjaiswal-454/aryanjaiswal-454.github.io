@@ -19,7 +19,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="footer-main">
         <a className="wordmark footer-wordmark" href="#top" aria-label={site.ariaLabels.homeLink}>
-          <span className="wordmark__symbol">{site.identity.wordmark}</span>
+          <span className="wordmark__symbol footer-wordmark__symbol"><img src={site.identity.logo} alt="" /></span>
           <span className="wordmark__name">{site.identity.brandName}</span>
         </a>
         <p>Building intelligent systems for real-world impact.</p>

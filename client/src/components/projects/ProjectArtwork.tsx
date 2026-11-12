@@ -16,7 +16,6 @@ export function ProjectArtwork({ project, index, eager = false }: ProjectArtwork
           loading={eager ? "eager" : "lazy"}
           decoding="async"
         />
-        <span className="project-artwork__index">{String(index + 1).padStart(2, "0")}</span>
       </div>
     );
   }
@@ -33,7 +32,6 @@ export function ProjectArtwork({ project, index, eager = false }: ProjectArtwork
         <span>{project.category.toUpperCase()}</span>
         <strong>{project.title.split(/[ —-]/)[0]}</strong>
       </div>
-      <span className="project-artwork__index">{String(index + 1).padStart(2, "0")}</span>
     </div>
   );
 }

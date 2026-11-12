@@ -108,7 +108,6 @@ export function Projects() {
               <article className="project-detail-card" key={active.id} aria-live="polite">
                 <div className="project-detail-card__heading">
                   <div><span>{active.category}</span><h3>{active.title}</h3></div>
-                  <span className="project-detail-card__count">{String(activeIndex + 1).padStart(2, "0")} / {String(orderedProjects.length).padStart(2, "0")}</span>
                 </div>
                 <p>{active.description}</p>
                 <div className="project-detail-card__stack" aria-label={`${active.title} technology stack`}>

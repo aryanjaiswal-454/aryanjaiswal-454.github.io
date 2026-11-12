@@ -45,16 +45,6 @@ export const getPosts = (fallback: FeaturedPost[]) =>
 export const getGithubRepos = (fallback: GithubRepo[]) =>
   fetchWithFallback<GithubRepo[]>("/github/repos", fallback);
 
-export async function sendContactMessage(payload: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}): Promise<ApiMessage> {
-  const response = await api.post<ApiMessage>("/contact", payload);
-  return response.data;
-}
-
 export async function adminLogin(email: string, password: string): Promise<void> {
   await api.post("/auth/login", { email, password });
 }

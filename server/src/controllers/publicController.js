@@ -1,11 +1,8 @@
-import nodemailer from "nodemailer";
 import { Experience } from "../models/Experience.js";
-import { Message } from "../models/Message.js";
 import { Post } from "../models/Post.js";
 import { Project } from "../models/Project.js";
 import { Skill } from "../models/Skill.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { contactPayloadErrors, escapeHtml, normalizeContactPayload } from "../utils/contact.js";
 import { fetchGithubRepositories } from "../utils/github.js";
 
 export const listProjects = asyncHandler(async (_request, response) => {
@@ -45,52 +42,3 @@ export const listGithubRepositories = asyncHandler(async (_request, response) =>
   }
 });
 
-export const createContactMessage = asyncHandler(async (request, response) => {
-  const payload = normalizeContactPayload(request.body || {});
-  const errors = contactPayloadErrors(payload);
-  if (errors.length) {
-    return response.status(400).json({ error: "Please check your message and try again.", details: [...new Set(errors)] });
-  }
-
-  const message = await Message.create(payload);
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPassword = process.env.SMTP_PASSWORD;
-  const contactTo = process.env.CONTACT_TO || process.env.ADMIN_EMAIL;
-  if (!smtpHost || !smtpUser || !smtpPassword || !contactTo) {
-    return response.status(503).json({
-      error: "Your message was saved, but email delivery is not configured. Please use the direct email link."
-    });
-  }
-
-  try {
-    const port = Number(process.env.SMTP_PORT || 587);
-    if (!Number.isInteger(port) || port < 1 || port > 65535) {
-      return response.status(503).json({
-        error: "Your message was saved, but email delivery is not configured correctly. Please use the direct email link."
-      });
-    }
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port,
-      secure: process.env.SMTP_SECURE === "true",
-      auth: { user: smtpUser, pass: smtpPassword }
-    });
-    await transporter.sendMail({
-      from: `"Portfolio contact" <${smtpUser}>`,
-      to: contactTo,
-      replyTo: payload.email,
-      subject: `Portfolio contact: ${payload.subject}`,
-      text: `From: ${payload.name} <${payload.email}>\n\n${payload.message}`,
-      html: `<p><strong>From:</strong> ${escapeHtml(payload.name)} &lt;${escapeHtml(payload.email)}&gt;</p><p><strong>Subject:</strong> ${escapeHtml(payload.subject)}</p><p>${escapeHtml(payload.message).replace(/\n/g, "<br>")}</p>`
-    });
-    message.emailSentAt = new Date();
-    await message.save();
-    return response.status(201).json({ message: "Your message was sent successfully." });
-  } catch (error) {
-    console.error("Contact email delivery failed", { name: error?.name || "Error" });
-    return response.status(502).json({
-      error: "Your message was saved, but email delivery could not be confirmed. Please use the direct email link."
-    });
-  }
-});

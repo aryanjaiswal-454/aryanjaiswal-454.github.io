@@ -34,7 +34,10 @@ export function PageIntro() {
       transition={{ delay: 0.45, duration: 0.4 }}
       aria-hidden="true"
     >
-      <span>{site.identity.wordmark}</span>
+      <div className="page-intro__brand">
+        <img src={site.identity.logo} alt="" />
+        <span>{site.identity.brandName}</span>
+      </div>
       <i />
     </motion.div>
   );

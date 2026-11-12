@@ -20,7 +20,7 @@ export function Resume() {
           <div className="resume-viewer__preview">
             <iframe
               className="resume-viewer__frame"
-              src={`${resumeUrl}#view=FitH`}
+              src={`${resumeUrl}#zoom=page-width`}
               title="Aryan Jaiswal resume PDF preview"
               loading="lazy"
             />

@@ -34,7 +34,7 @@ export function Home() {
         />
         <div className="home-grid">
           <Reveal className="home-intro surface-hover">
-            <img className="home-intro__portrait" src="/assets/portrait.png" alt="Aryan Jaiswal" />
+            <img className="home-intro__portrait" src="/assets/portrait.png" alt="Aryan Jaiswal" loading="lazy" decoding="async" />
             <span className="eyebrow">HOW I WORK</span>
             <h3>Learn the fundamentals. Build beyond the demo.</h3>
             <p>{site.identity.about}</p>
