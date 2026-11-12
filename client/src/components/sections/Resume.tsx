@@ -39,7 +39,7 @@ export function Resume() {
                 className="resume-viewer__image"
                 src="/assets/resume-preview.png"
                 alt="Preview of Aryan Jaiswal resume page"
-                loading="lazy"
+                loading="eager" decoding="sync"
               />
               {resumeLinks.map(({ href, label, rect: [x0, y0, x1, y1] }) => (
                 <a
