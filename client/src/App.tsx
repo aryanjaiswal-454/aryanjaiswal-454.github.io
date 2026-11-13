@@ -5,6 +5,7 @@ import { Footer } from "./components/layout/Footer";
 import { Navbar } from "./components/layout/Navbar";
 import { NetworkBackdrop } from "./components/layout/NetworkBackdrop";
 import { PageIntro } from "./components/layout/PageIntro";
+import { PortfolioMediaPreloader } from "./components/layout/PortfolioMediaPreloader";
 import { ScrollProgress } from "./components/layout/ScrollProgress";
 import { Seo } from "./components/layout/Seo";
 import { Contact } from "./components/sections/Contact";
@@ -41,6 +42,7 @@ function PortfolioPage() {
     <SiteMotionContext.Provider value={enabled}>
       <div className={`portfolio-app${enabled ? "" : " motion-off"}`}>
         <NetworkBackdrop active={enabled} />
+        <PortfolioMediaPreloader />
         <Seo />
         <a className="skip-link" href="#main-content">Skip to content</a>
         <ScrollProgress />
