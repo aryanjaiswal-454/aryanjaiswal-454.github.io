@@ -359,7 +359,7 @@ portfolio:
     - title: "Top 50 Teams — HackStorm ’25 Finale"
       issuer: "HackWithIndia MMMUT"
       category: competition
-      image: "/assets/certificates/HackStorm_By_HackWithIndia MMMUT.jpg"
+      image: "/assets/certificates/HackStorm_By_HackWithIndiaMMMUT.jpg"
   testimonials: []
   metrics:
     - label: "DSA problems solved"
