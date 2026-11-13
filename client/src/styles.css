@@ -612,8 +612,14 @@ img { display: block; max-width: 100%; }
 .certificate-viewer__id { min-width: 140px; flex: 0 1 46%; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; padding: 6px 0 0; text-align: right; }
 .certificate-viewer__id span { color: #ff6571; font-size: .55rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .certificate-viewer__id strong { color: #f2eeeb; font-size: clamp(.82rem, 1.3vw, 1rem); font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
-.certificate-viewer__image { min-height: 330px; max-height: 600px; display: grid; place-items: center; padding: 14px; background: rgba(255,255,255,.025); }
-.certificate-viewer__image img { width: 100%; max-height: 560px; object-fit: contain; }
+.certificate-viewer__image { position: relative; min-height: 330px; max-height: 600px; display: grid; place-items: center; padding: 14px; background: rgba(255,255,255,.025); }
+.certificate-viewer__image img { width: 100%; max-height: 560px; object-fit: contain; transition: opacity 180ms ease; }
+.certificate-viewer__image img.is-loading { opacity: 0; }
+.certificate-viewer__image img.is-loaded { opacity: 1; }
+.certificate-viewer__loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #bdb5b2; font-size: .78rem; }
+.certificate-viewer__loading i { width: 30px; height: 30px; border: 3px solid rgba(255,255,255,.16); border-top-color: var(--bright); border-radius: 50%; animation: certificate-spin .8s linear infinite; }
+.certificate-viewer__loading--error { position: relative; padding: 32px; color: #ff9aa1; text-align: center; }
+@keyframes certificate-spin { to { transform: rotate(360deg); } }
 .certificate-viewer__empty { min-height: 330px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #928b88; font-size: .7rem; }
 .certificate-viewer__details { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.1); }
 .certificate-viewer__details p { margin: 0 0 9px; color: #aaa4a1; font-size: .63rem; line-height: 1.6; }

@@ -26,6 +26,8 @@ const certificateIcons: Array<{ matches: string[]; icon: LucideIcon }> = [
 
 function CertificateBrowser({ certificates, title }: { certificates: Certificate[]; title: string }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [loadedImage, setLoadedImage] = useState<string | null>(null);
+  const [failedImage, setFailedImage] = useState<string | null>(null);
   if (!certificates.length) return null;
   const selected = selectedIndex === null ? null : certificates[selectedIndex] ?? null;
 
@@ -72,7 +74,25 @@ function CertificateBrowser({ certificates, title }: { certificates: Certificate
           </div>
           {selected.image ? (
             <a className="certificate-viewer__image" href={selected.image} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size certificate: ${selected.title}`}>
-              <img src={selected.image} alt={`${selected.title} certificate`} loading="lazy" decoding="async" />
+              {loadedImage !== selected.image && failedImage !== selected.image && (
+                <span className="certificate-viewer__loading" role="status">
+                  <i aria-hidden="true" />
+                  <span>Loading certificate</span>
+                </span>
+              )}
+              {failedImage === selected.image ? (
+                <span className="certificate-viewer__loading certificate-viewer__loading--error" role="status">Certificate preview could not be loaded.</span>
+              ) : (
+                <img
+                  className={loadedImage === selected.image ? "is-loaded" : "is-loading"}
+                  src={selected.image}
+                  alt={`${selected.title} certificate`}
+                  loading="eager"
+                  decoding="async"
+                  onLoad={() => setLoadedImage(selected.image || null)}
+                  onError={() => setFailedImage(selected.image || null)}
+                />
+              )}
             </a>
           ) : (
             <div className="certificate-viewer__empty"><FileBadge size={30} aria-hidden="true" /><span>Certificate image unavailable</span></div>
